@@ -7,4 +7,33 @@
 export type User = {
   id: number;
   name: string;
+  prenom?: string;
+  email?: string;
+  filiere?: string;
+};
+
+export type Speaker = {
+  id: number;
+  nom: string;
+  prenom: string;
+  poste: string;
+  secteur: string;
+  photoUrl?: string;
+};
+
+export type Entreprise = {
+  id: number;
+  nom: string;
+  domaine: string;
+  description: string;
+  logoUrl?: string;
+  siteWeb?: string;
+};
+
+export type ProgrammeEvent = {
+  id: number;
+  titre: string;
+  description: string;
+  date: string; // format ISO ou texte
+  heure: string;
 };

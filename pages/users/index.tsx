@@ -6,12 +6,44 @@ import { sampleUserData } from "../../utils/sample-data";
 import Layout from "../../components/Layout";
 import List from "../../components/List";
 
+
+
+
+
+
+
 type Props = {
   items: User[];
 };
 
 const WithStaticProps = ({ items }: Props) => (
   <Layout title="Users List | Next.js + TypeScript Example">
+    
+    
+    {/* Début de la section bienvenue responsive */}
+    <div className="hero">
+      <h1>Bienvenue sur la liste des utilisateurs</h1>
+
+      <style jsx>{`
+        .hero {
+          padding: 40px;
+          text-align: center;
+        }
+
+        @media (max-width: 768px) {
+          .hero {
+            padding: 20px;
+          }
+
+          h1 {
+            font-size: 1.5rem;
+          }
+        }
+      `}</style>
+    </div>
+    {/* Fin de la section bienvenue */}
+    
+    
     <h1>Users List</h1>
     <p>
       Example fetching data from inside <code>getStaticProps()</code>.
