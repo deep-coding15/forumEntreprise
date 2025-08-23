@@ -136,7 +136,22 @@ const IndexPage = () => {
         }}
       >
         {/* Logo à gauche */}
-        <div style={{ flex: 1, display: "flex", alignItems: "center", alignContent: "center", gap: "2rem", width: "100%" }}>
+        <style>
+            {` @media (max-width:480px){
+                .logos { display: none !important;} 
+                .enter { display: inline !important;}
+              }
+              @media (min-width:481px){ 
+                .enter { display: none !important;} 
+              }
+            `}
+          </style>
+          <div className="enter" style={{ flex: 1, display: "flex", alignItems: "baseline", fontSize: 14, fontWeight: 600, color: "#3949ab", marginLeft: 16 }}>
+            <img src="forum logo.png" alt="forum logo" style={{ flex: 1, height: 70, marginRight: 15 }} /> 
+            <div style={{display: "inline-flex", transform: "translate(10%, -70%)", textAlign: "center"}}>Forum des entreprises <br /> ENSA de Tétouan</div>
+          </div>
+          
+        <div className="logos" style={{ flex: 1, display: "flex", alignItems: "center", alignContent: "center", gap: "2rem", width: "100%" }}>          
           <li style={{ flex: 1, listStyle: "none" }}><img src="LOGOENSA.png" alt="Ensatetouna" style={{ flex: 1, height: 60, marginRight: 13 }} /></li>
           <li style={{ flex: 1, listStyle: "none" }}><img src="LOGO ADE.png" alt="Ade" style={{ flex: 1, height: 80, marginRight: 13 }} /></li>
           <li style={{ flex: 1, listStyle: "none" }}><img src="forum logo.png" alt="forum logo" style={{ flex: 1, height: 70, marginRight: 15 }} /></li>
@@ -237,6 +252,7 @@ const IndexPage = () => {
       </nav>
       {/* Responsive CSS pour masquer/afficher menu burger */}
       <style>{`
+        
         @media (max-width: 900px) {
           .nav-desktop { display: block !important; } 
         }

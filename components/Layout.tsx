@@ -40,6 +40,7 @@ const Layout = ({ children, title = "This is the default title" }: Props) => {
         maxWidth: 900,
         margin: "0 auto",
         padding: "20px",
+        width: "80%",
       }}
     >
       <Head>
@@ -54,6 +55,7 @@ const Layout = ({ children, title = "This is the default title" }: Props) => {
           paddingBottom: "10px",
           marginBottom: "30px",
           /* display: "flex", */
+          width: "80%",
           justifyContent: "center",
           gap: "20px",
         }}
