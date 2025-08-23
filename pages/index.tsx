@@ -28,25 +28,29 @@ const texteADE = `L’Association des Étudiants de l’ENSA Tétouan (ADE) est 
 
 
 const programme = [
-  { jour: "15 octobre 2025", events: [
-    { heure: "08:30", titre: "Accueil des participants"},
-    { heure: "09:00", titre: "Cérémonie d’ouverture", desc: "discours des intervenants, sponsors, partenaires" },
-    { heure: "10:00", titre: "Atelier Pause-café" },
-    { heure: "10:30", titre: "Inauguration et ouverture des stands", desc: "échanges avec entreprises et partenaires"},
-    { heure: "11:30 ", titre: "Conférence", desc: "L’ingénieur marocain face aux défis de la Coupe du Monde 2030"},
-    { heure: "13:30 ", titre: "Pause-déjeuner"},
-    { heure: "15:30 ", titre: "Passage des entretiens de recrutement"},
-    { heure: "18:00 ", titre: "Fermeture des stands"},
-  ]},
-  { jour: "16 octobre 2025", events: [
-    { heure: "08:30", titre: "Accueil des participants et ouverture des stands"},
-    { heure: "09:00", titre: "Conférence", desc: "Ingénierie durable et infrastructures sportives du futur" },
-    { heure: "10:15", titre: "Atelier ", desc: "Innover pour 2030 – startup challenges et écosystèmes tech" },
-    { heure: "11:30", titre: "Tables rondes ", desc: "Compétences clés pour l’ingénieur du futur" },
-    { heure: "13:00", titre: "Pause-déjeuner"},
-    { heure: "14:30", titre: "Fermeture des stands et Passage des entretiens"},
-    { heure: "18:00", titre: "Cocktails de clôture"},
- ]}
+  {
+    jour: "15 octobre 2025", events: [
+      { heure: "08:30", titre: "Accueil des participants" },
+      { heure: "09:00", titre: "Cérémonie d’ouverture", desc: "discours des intervenants, sponsors, partenaires" },
+      { heure: "10:00", titre: "Atelier Pause-café" },
+      { heure: "10:30", titre: "Inauguration et ouverture des stands", desc: "échanges avec entreprises et partenaires" },
+      { heure: "11:30 ", titre: "Conférence", desc: "L’ingénieur marocain face aux défis de la Coupe du Monde 2030" },
+      { heure: "13:30 ", titre: "Pause-déjeuner" },
+      { heure: "15:30 ", titre: "Passage des entretiens de recrutement" },
+      { heure: "18:00 ", titre: "Fermeture des stands" },
+    ]
+  },
+  {
+    jour: "16 octobre 2025", events: [
+      { heure: "08:30", titre: "Accueil des participants et ouverture des stands" },
+      { heure: "09:00", titre: "Conférence", desc: "Ingénierie durable et infrastructures sportives du futur" },
+      { heure: "10:15", titre: "Atelier ", desc: "Innover pour 2030 – startup challenges et écosystèmes tech" },
+      { heure: "11:30", titre: "Tables rondes ", desc: "Compétences clés pour l’ingénieur du futur" },
+      { heure: "13:00", titre: "Pause-déjeuner" },
+      { heure: "14:30", titre: "Fermeture des stands et Passage des entretiens" },
+      { heure: "18:00", titre: "Cocktails de clôture" },
+    ]
+  }
 ];
 
 const navLinks = [
@@ -126,70 +130,25 @@ const IndexPage = () => {
           boxShadow: "0 2px 8px #e0e0e0",
           padding: 12,
           display: "flex",
-          justifyContent: "center",
+          justifyContent: "space-between",
           alignItems: "center",
+          maxWidth: "100%",
         }}
       >
         {/* Logo à gauche */}
-        <div style={{ flex: 1, display: "flex", alignItems: "center" }}>
-          <img src="LOGOENSA.png" alt="Ensatetouna" style={{ height: 60, marginRight: 13 }} />
-          <img src="LOGO ADE.png" alt="Ade" style={{ height: 80, marginRight: 13 }} />
-          <img src="forum logo.png" alt="forum logo" style={{ height: 70, marginRight: 15 }} />
-          <img src="LOGO UAE.png" alt="forum logo" style={{ height: 70, marginRight: 15 }} />
+        <div style={{ flex: 1, display: "flex", alignItems: "center", alignContent: "center", gap: "2rem", width: "100%" }}>
+          <li style={{ flex: 1, listStyle: "none" }}><img src="LOGOENSA.png" alt="Ensatetouna" style={{ flex: 1, height: 60, marginRight: 13 }} /></li>
+          <li style={{ flex: 1, listStyle: "none" }}><img src="LOGO ADE.png" alt="Ade" style={{ flex: 1, height: 80, marginRight: 13 }} /></li>
+          <li style={{ flex: 1, listStyle: "none" }}><img src="forum logo.png" alt="forum logo" style={{ flex: 1, height: 70, marginRight: 15 }} /></li>
+          <li style={{ flex: 1, listStyle: "none" }}><img src="LOGO UAE.png" alt="forum logo" style={{ flex: 1, height: 70, marginRight: 15 }} /></li>
         </div>
-        {/* Menu desktop */}
-        <div className="nav-desktop" style={{ display: "flex", gap: 8 }}>
-          {navLinks.map((link) => (
-            <button
-              key={link.href}
-              onClick={() => {
-                const element = document.querySelector(link.href);
-                if (element) {
-                  element.scrollIntoView({ behavior: 'smooth' });
-                }
-              }}
-              style={{
-                background: "rgba(255, 255, 255, 0.95)",
-                color: "#1a237e",
-                border: "2px solid transparent",
-                borderRadius: "50px",
-                padding: "10px 18px",
-                fontSize: 13,
-                fontWeight: 600,
-                cursor: "pointer",
-                boxShadow: "0 3px 15px rgba(26, 35, 126, 0.15)",
-                transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-                textDecoration: "none",
-                display: "inline-block",
-                minWidth: "85px",
-                position: "relative",
-                overflow: "hidden",
-                backdropFilter: "blur(10px)",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "translateY(-3px) scale(1.05)";
-                e.currentTarget.style.boxShadow = "0 8px 25px rgba(26, 35, 126, 0.25)";
-                e.currentTarget.style.background = "linear-gradient(135deg, #1e88e5, #3949ab)";
-                e.currentTarget.style.color = "white";
-                e.currentTarget.style.border = "2px solid rgba(255, 255, 255, 0.3)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "translateY(0) scale(1)";
-                e.currentTarget.style.boxShadow = "0 3px 15px rgba(26, 35, 126, 0.15)";
-                e.currentTarget.style.background = "rgba(255, 255, 255, 0.95)";
-                e.currentTarget.style.color = "#1a237e";
-                e.currentTarget.style.border = "2px solid transparent";
-              }}
-            >
-              {link.label}
-            </button>
-          ))}
-        </div>
+        
+        
         {/* Menu burger mobile */}
         <button
           className="nav-burger"
           style={{
-            display: "none",
+            display: "inline",
             background: "none",
             border: "none",
             fontSize: 28,
@@ -211,13 +170,17 @@ const IndexPage = () => {
               top: 60,
               left: 0,
               right: 0,
-              background: "#fff",
-              boxShadow: "0 2px 8px #e0e0e0",
+              background: "rgba(255, 255, 255, 0.98)", // légèrement translucide
+              backdropFilter: "blur(10px)", // effet flou derrière
+              boxShadow: "0 4px 20px rgba(0,0,0,0.1)", // ombre douce et élégante
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              gap: 18,
-              padding: 18,
+              gap: 20,
+              padding: 20,
+              borderRadius: 12, // coins arrondis
+              transition: "transform 0.3s ease, opacity 0.3s ease", // animation smooth
+              zIndex: 1000, // au-dessus de tout
             }}
           >
             {navLinks.map((link) => (
@@ -233,13 +196,17 @@ const IndexPage = () => {
                 style={{
                   background: "rgba(255, 255, 255, 0.95)",
                   color: "#1a237e",
+                  display: "block",
+                  left: "50%",
+                  translate: "-50% 0",
+                  margin: "12px",
                   border: "2px solid transparent",
-                  borderRadius: "50px",
+                  borderRadius: "10px",
                   padding: "12px 20px",
                   fontSize: 14,
                   fontWeight: 600,
                   cursor: "pointer",
-                  boxShadow: "0 3px 15px rgba(26, 35, 126, 0.15)",
+                  boxShadow: "0 8px 20px rgba(26, 35, 126, 0.15)",
                   transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                   width: "80%",
                   maxWidth: "160px",
@@ -248,18 +215,18 @@ const IndexPage = () => {
                   backdropFilter: "blur(10px)",
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "translateY(-3px) scale(1.05)";
-                  e.currentTarget.style.boxShadow = "0 8px 25px rgba(26, 35, 126, 0.25)";
-                  e.currentTarget.style.background = "linear-gradient(135deg, #1e88e5, #3949ab)";
-                  e.currentTarget.style.color = "white";
-                  e.currentTarget.style.border = "2px solid rgba(255, 255, 255, 0.3)";
+                  e.currentTarget.style.transform = "translateY(-2px)";  // léger mouvement
+                  e.currentTarget.style.boxShadow = "0 6px 18px rgba(0, 0, 0, 0.06)"; // ombre plus marquée
+                  e.currentTarget.style.background = "#f5f5f5";          // léger contraste
+                  e.currentTarget.style.color = "#1a237e";               // reste lisible
+                  e.currentTarget.style.border = "1px solid rgba(26,35,126,0.2)";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "translateY(0) scale(1)";
-                  e.currentTarget.style.boxShadow = "0 3px 15px rgba(26, 35, 126, 0.15)";
-                  e.currentTarget.style.background = "rgba(255, 255, 255, 0.95)";
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow = "0 2px 8px rgba(0,0,0,0.08)";
+                  e.currentTarget.style.background = "#ffffff";
                   e.currentTarget.style.color = "#1a237e";
-                  e.currentTarget.style.border = "2px solid transparent";
+                  e.currentTarget.style.border = "1px solid rgba(0,0,0,0.05)";
                 }}
               >
                 {link.label}
@@ -271,12 +238,13 @@ const IndexPage = () => {
       {/* Responsive CSS pour masquer/afficher menu burger */}
       <style>{`
         @media (max-width: 900px) {
-          .nav-desktop { display: none !important; }
-          .nav-burger { display: block !important; }
+          .nav-desktop { display: block !important; } 
         }
         @media (min-width: 901px) {
-          .nav-mobile { display: none !important; }
+          
         }
+        .nav-burger { display: block !important; }
+        .nav-mobile { display: block !important; }
         
         /* Nouvelle police pour tout le site sauf le titre principal */
         body, h2, h3, h4, h5, h6, p, span, div, button, input, textarea, label {
@@ -407,129 +375,136 @@ const IndexPage = () => {
       `}</style>
       {/* SECTION ACCUEIL responsive et centré */}
       <div
-  id="accueil"
-  style={{
-    textAlign: "center",
-    marginTop: 100,
-    padding: "0 16px",
-    fontFamily: "'Poppins', 'Inter', 'Roboto', sans-serif",
-  }}
->
-  <h1
-    style={{
-      fontSize: "2.8rem",
-      color: "#1a237e",
-      marginBottom: 20,
-      fontWeight: 800,
-      lineHeight: 1.3,
-      fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-    }}
-  >
-    Forum des Entreprises ENSA Tétouan
-  </h1>
-
-  <h2 style={{ 
-    color: "#3949ab", 
-    fontSize: "1.4rem", 
-    margin: "8px 0",
-    fontFamily: "'Poppins', 'Inter', 'Roboto', sans-serif",
-    fontWeight: 500
-  }}>
-    15 & 16 octobre 2025
-  </h2>
-
-  <h3 style={{ 
-    color: "#5c6bc0", 
-    fontSize: "1.2rem", 
-    marginTop: 6,
-    fontFamily: "'Poppins', 'Inter', 'Roboto', sans-serif",
-    fontWeight: 400
-  }}>
-    À l'École Nationale des Sciences Appliquées de Tétouan
-  </h3>
-
-  <div style={{ margin: "40px 0" }}>
-    <button
-  onClick={(e) => {
-    e.preventDefault();
-    setShowModal(true);
-  }}
-  style={{
-    fontSize: "1.3rem",
-    padding: "16px 42px",
-    fontWeight: 500,
-    background: "linear-gradient(135deg, #1e88e5, #354cb1ff)",
-    color: "#fff",
-    lineHeight: 1.3,
-    border: "none",
-    borderRadius: "50px",
-    cursor: "pointer",
-    boxShadow: "0 8px 20px rgba(94, 53, 177, 0.4)",
-    transition: "all 0.3s ease",
-    position: "relative",
-    overflow: "hidden",
-  }}
-  onMouseEnter={(e) => {
-    e.currentTarget.style.boxShadow = "0 10px 25px rgba(30, 136, 229, 0.5)";
-    e.currentTarget.style.transform = "scale(1.05)";
-  }}
-  onMouseLeave={(e) => {
-    e.currentTarget.style.boxShadow = "0 8px 20px rgba(94, 53, 177, 0.4)";
-    e.currentTarget.style.transform = "scale(1)";
-  }}
->
-  S’inscrire maintenant
-  
-</button>
-  </div>
-
-  {countdown ? (
-  <div
-    style={{
-      display: "flex",
-      justifyContent: "center",
-      gap: 16,
-      flexWrap: "wrap",
-      marginTop: 20,
-    }}
-  >
-    {[
-      { label: "Jours", value: countdown.days },
-      { label: "Heures", value: countdown.hours },
-      { label: "Minutes", value: countdown.minutes },
-      { label: "Secondes", value: countdown.seconds },
-    ].map((item, index) => (
-      <div
-        key={index}
+        id="accueil"
         style={{
-          backgroundColor: "#e8eaf6",
-          color: "#1a237e",
-          padding: "16px 20px",
-          borderRadius: 12,
-          minWidth: 90,
           textAlign: "center",
-          boxShadow: "0 4px 12px rgba(26, 35, 126, 0.1)",
+          marginTop: 100,
+          padding: "0 16px",
+          fontFamily: "'Poppins', 'Inter', 'Roboto', sans-serif",
         }}
       >
-        <div style={{ fontSize: "2rem", fontWeight: 700 }}>{item.value}</div>
-        <div style={{ fontSize: "0.9rem", fontWeight: 500 }}>{item.label}</div>
-      </div>
-    ))}
-  </div>
-) : (
-  <div
-    style={{
-      fontSize: 22,
-      fontWeight: 600,
-      color: "#c62828",
-      marginTop: 20,
-    }}
-  >
-    L'événement a commencé !
-  </div>
-)}
+        <h3 style={{
+          color: "#5c6bc0",
+          fontSize: "1.2rem",
+          marginTop: 6,
+          fontFamily: "'Poppins', 'Inter', 'Roboto', sans-serif",
+          fontWeight: 400
+        }}>Vous invites Au</h3>
+        <h1
+          style={{
+            fontSize: "2.8rem",
+            color: "#1a237e",
+            marginBottom: 20,
+            fontWeight: 800,
+            lineHeight: 1.3,
+            fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+          }}
+        >
+          Forum des Entreprises ENSA Tétouan
+        </h1>
 
-</div>
+        <h2 style={{
+          color: "#3949ab",
+          fontSize: "1.4rem",
+          margin: "8px 0",
+          fontFamily: "'Poppins', 'Inter', 'Roboto', sans-serif",
+          fontWeight: 500
+        }}>
+          15 & 16 octobre 2025
+        </h2>
+
+        <h3 style={{
+          color: "#5c6bc0",
+          fontSize: "1.2rem",
+          marginTop: 6,
+          fontFamily: "'Poppins', 'Inter', 'Roboto', sans-serif",
+          fontWeight: 400
+        }}>
+          À l'École Nationale des Sciences Appliquées de Tétouan
+        </h3>
+
+        <div style={{ margin: "40px 0" }}>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              setShowModal(true);
+            }}
+            style={{
+              fontSize: "1.3rem",
+              padding: "16px 42px",
+              fontWeight: 500,
+              background: "linear-gradient(135deg, #1e88e5, #354cb1ff)",
+              color: "#fff",
+              lineHeight: 1.3,
+              border: "none",
+              borderRadius: "50px",
+              cursor: "pointer",
+              boxShadow: "0 8px 20px rgba(94, 53, 177, 0.4)",
+              transition: "all 0.3s ease",
+              position: "relative",
+              overflow: "hidden",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.boxShadow = "0 10px 25px rgba(30, 136, 229, 0.5)";
+              e.currentTarget.style.transform = "scale(1.05)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.boxShadow = "0 8px 20px rgba(94, 53, 177, 0.4)";
+              e.currentTarget.style.transform = "scale(1)";
+            }}
+          >
+            S’inscrire maintenant
+
+          </button>
+        </div>
+
+        {countdown ? (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              gap: 16,
+              flexWrap: "wrap",
+              marginTop: 20,
+            }}
+          >
+            {[
+              { label: "Jours", value: countdown.days },
+              { label: "Heures", value: countdown.hours },
+              { label: "Minutes", value: countdown.minutes },
+              { label: "Secondes", value: countdown.seconds },
+            ].map((item, index) => (
+              <div
+                key={index}
+                style={{
+                  backgroundColor: "#e8eaf6",
+                  color: "#1a237e",
+                  padding: "16px 20px",
+                  borderRadius: 12,
+                  minWidth: 90,
+                  textAlign: "center",
+                  boxShadow: "0 4px 12px rgba(26, 35, 126, 0.1)",
+                }}
+              >
+                <div style={{ fontSize: "2rem", fontWeight: 700 }}>{item.value}</div>
+                <div style={{ fontSize: "0.9rem", fontWeight: 500 }}>{item.label}</div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div
+            style={{
+              fontSize: 22,
+              fontWeight: 600,
+              color: "#c62828",
+              marginTop: 20,
+            }}
+          >
+            L'événement a commencé !
+          </div>
+        )}
+
+      </div>
 
 
       {showModal && (
@@ -585,152 +560,152 @@ const IndexPage = () => {
       )}
       {/* SECTION ADE */}
       <section
-  id="ade"
-  style={{
-    maxWidth: 900,
-    margin: "80px auto 0 auto",
-    background: "linear-gradient(145deg, #e3e9f7, #f5f7fa)",
-    borderRadius: 24,
-    padding: 40,
-    boxShadow: "0 12px 30px rgba(0, 0, 0, 0.05)",
-    transition: "all 0.3s ease-in-out",
-  }}
->
-  <h2 style={{ color: "#1a237e", textAlign: "center", fontSize: 28, marginBottom: 20 }}>
-    À propos de l’ADE
-  </h2>
-  <p
-    style={{
-      fontSize: 18,
-      lineHeight: 1.8,
-      color: "#333",
-      textAlign: "justify",
-      maxWidth: "90%",
-      margin: "0 auto",
-    }}
-  >
-    {texteADE}
-  </p>
-</section>
-      {/* SECTION ORGANISATEURS */}
-      <section
-  id="organisateurs"
-  style={{
-    maxWidth: 1100,
-    margin: "80px auto 0 auto",
-    padding: "40px 12px",
-  }}
->
-  <h2
-    style={{
-      color: "#1a237e",
-      textAlign: "center",
-      marginBottom: 48,
-      fontSize: 26,
-      fontWeight: 600,
-    }}
-  >
-    Membres organisateurs
-  </h2>
-
-  {/* Debug: nombre d'organisateurs */}
-  <div style={{ textAlign: "center", marginBottom: 10, fontSize: 12, color: "#666" }}>
-    {(organisateurs.length === 0 ? testOrganisateurs : organisateurs).length} organisateur(s)
-  </div>
-
-  <div
-    className="org-list"
-    style={{
-      display: "flex",
-      flexWrap: "wrap",
-      gap: 32,
-      justifyContent: "center",
-      alignItems: "center",
-      width: "100%",
-      margin: "0 auto",
-    }}
-  >
-    {(organisateurs.length === 0 ? testOrganisateurs : organisateurs).map((membre, idx) => (
-        <div
-          key={membre.id || idx}
-          className="org-card"
+        id="ade"
+        style={{
+          maxWidth: 900,
+          margin: "80px auto 0 auto",
+          background: "linear-gradient(145deg, #e3e9f7, #f5f7fa)",
+          borderRadius: 24,
+          padding: 40,
+          boxShadow: "0 12px 30px rgba(0, 0, 0, 0.05)",
+          transition: "all 0.3s ease-in-out",
+        }}
+      >
+        <h2 style={{ color: "#1a237e", textAlign: "center", fontSize: 28, marginBottom: 20 }}>
+          À propos de l’ADE
+        </h2>
+        <p
           style={{
-            background: "#ffffff",
-            borderRadius: 20,
-            boxShadow: "0 8px 24px rgba(0,0,0,0.05)",
-            padding: 28,
-            width: 260,
-            textAlign: "center",
-            transition: "transform 0.3s ease",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = "translateY(-6px)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = "translateY(0)";
+            fontSize: 18,
+            lineHeight: 1.8,
+            color: "#333",
+            textAlign: "justify",
+            maxWidth: "90%",
+            margin: "0 auto",
           }}
         >
-          <img
-            src={membre.photoUrl}
-            alt={membre.nom}
-            width={90}
-            height={90}
-            style={{
-              borderRadius: "50%",
-              objectFit: "cover",
-              marginBottom: 16,
-              border: "3px solid #5c6bc0",
-              display: "block",
-              marginLeft: "auto",
-              marginRight: "auto",
-            }}
-          />
-          <h3
-            style={{
-              color: "#1a237e",
-              margin: "10px 0 4px 0",
-              fontSize: 18,
-              fontWeight: 600,
-            }}
-          >
-            {membre.prenom} {membre.nom}
-          </h3>
-          <div
-            style={{
-              color: "#5c6bc0",
-              fontWeight: 500,
-              fontSize: 15,
-              marginBottom: 4,
-            }}
-          >
-            {membre.poste}
-          </div>
-          <div style={{ color: "#888", fontSize: 14 }}>{membre.filiere}</div>
-          {membre.linkedin && (
-            <a
-              href={membre.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
+          {texteADE}
+        </p>
+      </section>
+      {/* SECTION ORGANISATEURS */}
+      <section
+        id="organisateurs"
+        style={{
+          maxWidth: 1100,
+          margin: "80px auto 0 auto",
+          padding: "40px 12px",
+        }}
+      >
+        <h2
+          style={{
+            color: "#1a237e",
+            textAlign: "center",
+            marginBottom: 48,
+            fontSize: 26,
+            fontWeight: 600,
+          }}
+        >
+          Membres organisateurs
+        </h2>
+
+        {/* Debug: nombre d'organisateurs */}
+        <div style={{ textAlign: "center", marginBottom: 10, fontSize: 12, color: "#666" }}>
+          {(organisateurs.length === 0 ? testOrganisateurs : organisateurs).length} organisateur(s)
+        </div>
+
+        <div
+          className="org-list"
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 32,
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+            margin: "0 auto",
+          }}
+        >
+          {(organisateurs.length === 0 ? testOrganisateurs : organisateurs).map((membre, idx) => (
+            <div
+              key={membre.id || idx}
+              className="org-card"
               style={{
-                display: "inline-block",
-                marginTop: 12,
+                background: "#ffffff",
+                borderRadius: 20,
+                boxShadow: "0 8px 24px rgba(0,0,0,0.05)",
+                padding: 28,
+                width: 260,
+                textAlign: "center",
+                transition: "transform 0.3s ease",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translateY(-6px)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "translateY(0)";
               }}
             >
               <img
-                src="/linkedin1.webp"
-                alt="LinkedIn"
-                width={28}
-                height={28}
-                style={{ transition: "transform 0.3s ease" }}
-                onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.2)")}
-                onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
+                src={membre.photoUrl}
+                alt={membre.nom}
+                width={90}
+                height={90}
+                style={{
+                  borderRadius: "50%",
+                  objectFit: "cover",
+                  marginBottom: 16,
+                  border: "3px solid #5c6bc0",
+                  display: "block",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                }}
               />
-            </a>
-          )}
+              <h3
+                style={{
+                  color: "#1a237e",
+                  margin: "10px 0 4px 0",
+                  fontSize: 18,
+                  fontWeight: 600,
+                }}
+              >
+                {membre.prenom} {membre.nom}
+              </h3>
+              <div
+                style={{
+                  color: "#5c6bc0",
+                  fontWeight: 500,
+                  fontSize: 15,
+                  marginBottom: 4,
+                }}
+              >
+                {membre.poste}
+              </div>
+              <div style={{ color: "#888", fontSize: 14 }}>{membre.filiere}</div>
+              {membre.linkedin && (
+                <a
+                  href={membre.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: "inline-block",
+                    marginTop: 12,
+                  }}
+                >
+                  <img
+                    src="/linkedin1.webp"
+                    alt="LinkedIn"
+                    width={28}
+                    height={28}
+                    style={{ transition: "transform 0.3s ease" }}
+                    onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.2)")}
+                    onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
+                  />
+                </a>
+              )}
+            </div>
+          ))}
         </div>
-      ))}
-  </div>
-</section>
+      </section>
       {/* SECTION PROGRAMME */}
       <section id="programme" style={{ maxWidth: 900, margin: "80px auto 0 auto", background: "linear-gradient(120deg,#e3e9ff 60%,#f5f7fa 100%)", borderRadius: 16, padding: 32, boxShadow: "0 2px 12px #e3e3e3" }}>
         <h2 style={{ color: "#3949ab", textAlign: "center", marginBottom: 32 }}>Programme du Forum</h2>
@@ -750,87 +725,87 @@ const IndexPage = () => {
         ))}
       </section>
       {/* SECTION INTERVENANTS */}
-<section id="intervenants" style={{ maxWidth: 1200, margin: "80px auto", background: "#f0f4ff", borderRadius: 20, padding: 48, boxShadow: "0 6px 20px rgba(0,0,0,0.08)" }}>
-  <h2 style={{ color: "#1a237e", textAlign: "center", marginBottom: 48, fontSize: 26, fontWeight: "bold" }}>Nos Intervenants</h2>
-  <div className="interv-list" style={{ display: "flex", flexWrap: "wrap", gap: 40, justifyContent: "center" }}>
-    {intervenants.length === 0 ? (
-      <div style={{ color: '#888' }}>Aucun intervenant pour le moment.</div>
-    ) : intervenants.map((interv, idx) => (
-      <div key={interv.id || idx} className="interv-card" style={{ background: "#fff", borderRadius: 18, boxShadow: "0 4px 16px rgba(0,0,0,0.05)", padding: 24, width: 260, textAlign: "center", transition: "transform 0.3s, box-shadow 0.3s", cursor: "pointer" }}>
-        <img src={interv.photoUrl} alt={interv.nom} width={90} height={90} style={{ borderRadius: "50%", objectFit: "cover", marginBottom: 16, border: "3px solid #1a237e" }} />
-        <h3 style={{ color: "#1a237e", fontSize: 18, margin: "10px 0 4px" }}>{interv.nom}</h3>
-        <div style={{ color: "#3f51b5", fontWeight: 500, fontSize: 15 }}>{interv.poste}</div>
-        <div style={{ color: "#777", fontSize: 14 }}>{interv.secteur}</div>
-      </div>
-    ))}
-  </div>
-</section>
+      <section id="intervenants" style={{ maxWidth: 1200, margin: "80px auto", background: "#f0f4ff", borderRadius: 20, padding: 48, boxShadow: "0 6px 20px rgba(0,0,0,0.08)" }}>
+        <h2 style={{ color: "#1a237e", textAlign: "center", marginBottom: 48, fontSize: 26, fontWeight: "bold" }}>Nos Intervenants</h2>
+        <div className="interv-list" style={{ display: "flex", flexWrap: "wrap", gap: 40, justifyContent: "center" }}>
+          {intervenants.length === 0 ? (
+            <div style={{ color: '#888' }}>Aucun intervenant pour le moment.</div>
+          ) : intervenants.map((interv, idx) => (
+            <div key={interv.id || idx} className="interv-card" style={{ background: "#fff", borderRadius: 18, boxShadow: "0 4px 16px rgba(0,0,0,0.05)", padding: 24, width: 260, textAlign: "center", transition: "transform 0.3s, box-shadow 0.3s", cursor: "pointer" }}>
+              <img src={interv.photoUrl} alt={interv.nom} width={90} height={90} style={{ borderRadius: "50%", objectFit: "cover", marginBottom: 16, border: "3px solid #1a237e" }} />
+              <h3 style={{ color: "#1a237e", fontSize: 18, margin: "10px 0 4px" }}>{interv.nom}</h3>
+              <div style={{ color: "#3f51b5", fontWeight: 500, fontSize: 15 }}>{interv.poste}</div>
+              <div style={{ color: "#777", fontSize: 14 }}>{interv.secteur}</div>
+            </div>
+          ))}
+        </div>
+      </section>
 
-{/* SECTION SPONSORS */}
-<section id="sponsors" style={{ maxWidth: 1200, margin: "80px auto", background: "#e9f0ff", borderRadius: 20, padding: 48, boxShadow: "0 6px 20px rgba(0,0,0,0.08)" }}>
-  <h2 style={{ color: "#1a237e", textAlign: "center", marginBottom: 48, fontSize: 26, fontWeight: "bold" }}>Sponsors & Partenaires</h2>
-  <div className="sponsor-list" style={{ display: "flex", flexWrap: "wrap", gap: 40, justifyContent: "center" }}>
-    {sponsors.length === 0 ? (
-      <div style={{ color: '#888' }}>Aucun sponsor pour le moment.</div>
-    ) : sponsors.map((s, idx) => (
-      <div key={s.id || idx} className="sponsor-card" style={{
-        background: "#fff", borderRadius: 18, boxShadow: "0 4px 16px rgba(0,0,0,0.05)", padding: 24, width: 240, textAlign: "center",
-        borderTop: `6px solid ${s.niveau === 'Platinum' ? '#b3a369' : s.niveau === 'Gold' ? '#ffd700' : s.niveau === 'Silver' ? '#c0c0c0' : '#cd7f32'}`
-      }}>
-        <img src={s.logoUrl} alt={s.nom} width={70} height={70} style={{ objectFit: "contain", marginBottom: 12 }} />
-        <h3 style={{ color: "#1a237e", fontSize: 18 }}>{s.nom}</h3>
-        <div style={{ color: "#666", fontWeight: 500, marginBottom: 8, fontSize: 15 }}>{s.niveau}</div>
-        {s.siteWeb && (
-          <a href={s.siteWeb} target="_blank" rel="noopener noreferrer" style={{ color: "#1a237e", textDecoration: "underline", fontSize: 14 }}>
-            Voir le site
-          </a>
-        )}
-      </div>
-    ))}
-  </div>
-</section>
+      {/* SECTION SPONSORS */}
+      <section id="sponsors" style={{ maxWidth: 1200, margin: "80px auto", background: "#e9f0ff", borderRadius: 20, padding: 48, boxShadow: "0 6px 20px rgba(0,0,0,0.08)" }}>
+        <h2 style={{ color: "#1a237e", textAlign: "center", marginBottom: 48, fontSize: 26, fontWeight: "bold" }}>Sponsors & Partenaires</h2>
+        <div className="sponsor-list" style={{ display: "flex", flexWrap: "wrap", gap: 40, justifyContent: "center" }}>
+          {sponsors.length === 0 ? (
+            <div style={{ color: '#888' }}>Aucun sponsor pour le moment.</div>
+          ) : sponsors.map((s, idx) => (
+            <div key={s.id || idx} className="sponsor-card" style={{
+              background: "#fff", borderRadius: 18, boxShadow: "0 4px 16px rgba(0,0,0,0.05)", padding: 24, width: 240, textAlign: "center",
+              borderTop: `6px solid ${s.niveau === 'Platinum' ? '#b3a369' : s.niveau === 'Gold' ? '#ffd700' : s.niveau === 'Silver' ? '#c0c0c0' : '#cd7f32'}`
+            }}>
+              <img src={s.logoUrl} alt={s.nom} width={70} height={70} style={{ objectFit: "contain", marginBottom: 12 }} />
+              <h3 style={{ color: "#1a237e", fontSize: 18 }}>{s.nom}</h3>
+              <div style={{ color: "#666", fontWeight: 500, marginBottom: 8, fontSize: 15 }}>{s.niveau}</div>
+              {s.siteWeb && (
+                <a href={s.siteWeb} target="_blank" rel="noopener noreferrer" style={{ color: "#1a237e", textDecoration: "underline", fontSize: 14 }}>
+                  Voir le site
+                </a>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
 
-{/* SECTION ENTREPRISES */}
-<section id="entreprises" style={{ maxWidth: 1200, margin: "80px auto", background: "#f7faff", borderRadius: 20, padding: 48, boxShadow: "0 6px 20px rgba(0,0,0,0.08)" }}>
-  <h2 style={{ color: "#1a237e", textAlign: "center", marginBottom: 48, fontSize: 26, fontWeight: "bold" }}>Entreprises Participantes</h2>
-  <div className="entreprise-list" style={{ display: "flex", flexWrap: "wrap", gap: 40, justifyContent: "center" }}>
-    {entreprises.length === 0 ? (
-      <div style={{ color: '#888' }}>Aucune entreprise pour le moment.</div>
-    ) : entreprises.map((e, idx) => (
-      <div key={e.id || idx} className="entreprise-card" style={{ background: "#fff", borderRadius: 18, boxShadow: "0 4px 16px rgba(0,0,0,0.05)", padding: 24, width: 260, textAlign: "center" }}>
-        <img src={e.logoUrl} alt={e.nom} width={70} height={70} style={{ objectFit: "contain", marginBottom: 12 }} />
-        <h3 style={{ color: "#1a237e", fontSize: 18 }}>{e.nom}</h3>
-        <div style={{ color: "#3f51b5", fontWeight: 500, fontSize: 15 }}>{e.domaine}</div>
-        <div style={{ color: "#777", fontSize: 14, marginBottom: 8 }}>{e.description}</div>
-        {e.siteWeb && (
-          <a href={e.siteWeb} target="_blank" rel="noopener noreferrer" style={{ color: "#1a237e", textDecoration: "underline", fontSize: 14 }}>
-            Voir le site
-          </a>
-        )}
-      </div>
-    ))}
-  </div>
-</section>
+      {/* SECTION ENTREPRISES */}
+      <section id="entreprises" style={{ maxWidth: 1200, margin: "80px auto", background: "#f7faff", borderRadius: 20, padding: 48, boxShadow: "0 6px 20px rgba(0,0,0,0.08)" }}>
+        <h2 style={{ color: "#1a237e", textAlign: "center", marginBottom: 48, fontSize: 26, fontWeight: "bold" }}>Entreprises Participantes</h2>
+        <div className="entreprise-list" style={{ display: "flex", flexWrap: "wrap", gap: 40, justifyContent: "center" }}>
+          {entreprises.length === 0 ? (
+            <div style={{ color: '#888' }}>Aucune entreprise pour le moment.</div>
+          ) : entreprises.map((e, idx) => (
+            <div key={e.id || idx} className="entreprise-card" style={{ background: "#fff", borderRadius: 18, boxShadow: "0 4px 16px rgba(0,0,0,0.05)", padding: 24, width: 260, textAlign: "center" }}>
+              <img src={e.logoUrl} alt={e.nom} width={70} height={70} style={{ objectFit: "contain", marginBottom: 12 }} />
+              <h3 style={{ color: "#1a237e", fontSize: 18 }}>{e.nom}</h3>
+              <div style={{ color: "#3f51b5", fontWeight: 500, fontSize: 15 }}>{e.domaine}</div>
+              <div style={{ color: "#777", fontSize: 14, marginBottom: 8 }}>{e.description}</div>
+              {e.siteWeb && (
+                <a href={e.siteWeb} target="_blank" rel="noopener noreferrer" style={{ color: "#1a237e", textDecoration: "underline", fontSize: 14 }}>
+                  Voir le site
+                </a>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
 
-{/* SECTION MÉDIAS */}
-<section id="medias" style={{ maxWidth: 1200, margin: "80px auto", background: "#f0f4ff", borderRadius: 20, padding: 48, boxShadow: "0 6px 20px rgba(0,0,0,0.08)" }}>
-  <h2 style={{ color: "#1a237e", textAlign: "center", marginBottom: 48, fontSize: 26, fontWeight: "bold" }}>Collaborateurs Médiatiques</h2>
-  <div className="media-list" style={{ display: "flex", flexWrap: "wrap", gap: 40, justifyContent: "center" }}>
-    {medias.length === 0 ? (
-      <div style={{ color: '#888' }}>Aucun partenaire médiatique pour le moment.</div>
-    ) : medias.map((m, idx) => (
-      <div key={m.id || idx} className="media-card" style={{ background: "#fff", borderRadius: 18, boxShadow: "0 4px 16px rgba(0,0,0,0.05)", padding: 24, width: 240, textAlign: "center" }}>
-        <img src={m.logoUrl} alt={m.nom} width={70} height={70} style={{ objectFit: "contain", marginBottom: 12 }} />
-        <h3 style={{ color: "#1a237e", fontSize: 18 }}>{m.nom}</h3>
-        {m.siteWeb && (
-          <a href={m.siteWeb} target="_blank" rel="noopener noreferrer" style={{ color: "#1a237e", textDecoration: "underline", fontSize: 14 }}>
-            Voir le site
-          </a>
-        )}
-      </div>
-    ))}
-  </div>
-</section>
+      {/* SECTION MÉDIAS */}
+      <section id="medias" style={{ maxWidth: 1200, margin: "80px auto", background: "#f0f4ff", borderRadius: 20, padding: 48, boxShadow: "0 6px 20px rgba(0,0,0,0.08)" }}>
+        <h2 style={{ color: "#1a237e", textAlign: "center", marginBottom: 48, fontSize: 26, fontWeight: "bold" }}>Collaborateurs Médiatiques</h2>
+        <div className="media-list" style={{ display: "flex", flexWrap: "wrap", gap: 40, justifyContent: "center" }}>
+          {medias.length === 0 ? (
+            <div style={{ color: '#888' }}>Aucun partenaire médiatique pour le moment.</div>
+          ) : medias.map((m, idx) => (
+            <div key={m.id || idx} className="media-card" style={{ background: "#fff", borderRadius: 18, boxShadow: "0 4px 16px rgba(0,0,0,0.05)", padding: 24, width: 240, textAlign: "center" }}>
+              <img src={m.logoUrl} alt={m.nom} width={70} height={70} style={{ objectFit: "contain", marginBottom: 12 }} />
+              <h3 style={{ color: "#1a237e", fontSize: 18 }}>{m.nom}</h3>
+              {m.siteWeb && (
+                <a href={m.siteWeb} target="_blank" rel="noopener noreferrer" style={{ color: "#1a237e", textDecoration: "underline", fontSize: 14 }}>
+                  Voir le site
+                </a>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* SECTION CONTACT */}
       <section id="contact" style={{ maxWidth: 900, margin: "80px auto 40px auto", background: "#f5f7fa", borderRadius: 16, padding: 32, boxShadow: "0 2px 12px #e3e3e3" }}>
@@ -850,12 +825,13 @@ const IndexPage = () => {
           </div>
           <button type="submit" style={{ background: "#3949ab", color: "white", border: "none", borderRadius: 8, padding: "12px 0", fontSize: 17, cursor: "pointer", width: "100%", marginTop: 8 }}>Envoyer</button>
         </form>
-        <div style={{ 
-              display: "flex", 
-              justifyContent: "center", 
-              alignItems: "center", 
-              gap: 24, 
-              marginTop: 24 }}>
+        <div style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: 24,
+          marginTop: 24
+        }}>
           <a href="https://www.instagram.com/ade.ensate/" target="_blank" rel="noopener noreferrer" style={{ margin: "0 10px" }}>
             <img src="instagram1.webp" alt="Instagram ADE" width={35} height={35} />
           </a>

@@ -53,7 +53,7 @@ const Layout = ({ children, title = "This is the default title" }: Props) => {
           borderBottom: "2px solid #333",
           paddingBottom: "10px",
           marginBottom: "30px",
-          display: "flex",
+          /* display: "flex", */
           justifyContent: "center",
           gap: "20px",
         }}
