@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 // @ts-ignore
 import QRCode from 'react-qr-code';
 import html2canvas from 'html2canvas';
+import { backgroundSize } from "html2canvas/dist/types/css/property-descriptors/background-size";
 
 const eventDate = new Date("2025-10-15T09:00:00");
 
@@ -848,14 +849,84 @@ const IndexPage = () => {
           gap: 24,
           marginTop: 24
         }}>
-          <a href="https://www.instagram.com/ade.ensate/" target="_blank" rel="noopener noreferrer" style={{ margin: "0 10px" }}>
-            <img src="instagram1.webp" alt="Instagram ADE" width={35} height={35} />
+          <style>
+            {`
+              .icon{
+                position: relative;
+                padding: 10px;
+                width: 35px;
+                background-color: white;
+                box-shadow: 0 0 5px rgba(0,0,0,0.1), 0 5px 15px rgba(0,0,0,0.2), 0 0 25px rgba(0,0,0,0.5);
+                border-radius: 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+                transition: all 0.5s ease;
+                cursor: pointer;
+                
+              }
+              .icon span{
+                display: relative;
+                justify-content: center;
+                align-items: center;
+              }
+              .icon span img{
+                font-size: 24px;
+                border-radius: 10%;
+                color: #333;
+                transition: all 1s ease;
+              }
+              .label{
+                margin-left: 15px;
+                color: black;
+                display: none;
+                opacity: 0;
+                
+                text-decoration-line: none;
+                font-weight: 650;
+                transition: all 0.5 ease;
+              }
+              .icon:hover{
+                transform: scale(0.9);
+                width: 120px;
+              }
+              .icon:hover span img{
+                color: white;
+              }
+              .icon:hover .label{
+                opacity: 1;
+                display: inline;
+                text-decoration-line: none;
+                transform: translateX(0);
+              }
+              .instagram:hover span img{
+                background-color: white;
+                box-shadow: 0 0 15px white, 0 0 30px white;              
+              }
+              .email span img{
+                background-color: white;
+                box-shadow: 0 0 15px white, 0 0 30px white;
+              }
+              .linkedln span img{
+                background-color: white;
+                box-shadow: 0 0 15px white, 0 0 30px white;
+              }  
+              `
+            }
+          </style>
+          {/* instagram => backgrong-color: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4) */}
+          <a href="https://www.instagram.com/ade.ensate/" className="icon instagram" target="_blank" rel="noopener noreferrer">
+            <span> <img src="instagram1.webp" alt="Instagram ADE" width={35} height={35} /></span>
+            <span className="label">instagram</span>
           </a>
-          <a href="mailto:ade.ensa.tetouan@uae.ac.ma" style={{ margin: "0 10px" }}>
-            <img src="email1.png" alt="Email ADE" width={35} height={35} />
+          <a href="mailto:ade.ensa.tetouan@uae.ac.ma" className="icon email">
+            <span > <img src="email1.png" alt="Email ADE" width={35} height={35} /></span>
+            <span className="label">email</span>
           </a>
-          <a href="https://www.linkedin.com/in/ade-ensa-t%C3%A9touan-145a071b4/" target="_blank" rel="noopener noreferrer" style={{ margin: "0 10px" }}>
-            <img src="linkedin1.webp" alt="LinkedIn ADE" width={55} height={55} />
+          <a href="https://www.linkedin.com/in/ade-ensa-t%C3%A9touan-145a071b4/" className="icon linkedln" target="_blank" rel="noopener noreferrer">
+            <span > <img src="linkedin1.webp" alt="LinkedIn ADE" width={35} height={35} /></span>
+            <span className="label">linkedln</span><i className="fab fa-linkedin"></i>
           </a>
         </div>
       </section>
