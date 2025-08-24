@@ -267,7 +267,7 @@ const IndexPage = () => {
           font-family: 'Poppins', 'Inter', 'Roboto', sans-serif !important;
         }
         h1 {
-          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+          font-family: 'Playfair Display', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
         }
 
         /* Programme : affichage colonne sur mobile */
@@ -413,7 +413,7 @@ const IndexPage = () => {
             marginBottom: 20,
             fontWeight: 800,
             lineHeight: 1.3,
-            fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+            fontFamily: "'Playfair Display', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
           }}
         >
           Forum des Entreprises ENSA Tétouan
