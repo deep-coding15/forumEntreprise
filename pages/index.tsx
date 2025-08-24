@@ -5,7 +5,7 @@ import { useEffect, useState, useRef } from "react";
 import QRCode from 'react-qr-code';
 import html2canvas from 'html2canvas';
 import { backgroundSize } from "html2canvas/dist/types/css/property-descriptors/background-size";
-
+import FontAwesome from "../components/FontAwesome";
 const eventDate = new Date("2025-10-15T09:00:00");
 
 function getCountdown() {
@@ -842,6 +842,43 @@ const IndexPage = () => {
           </div>
           <button type="submit" style={{ background: "#3949ab", color: "white", border: "none", borderRadius: 8, padding: "12px 0", fontSize: 17, cursor: "pointer", width: "100%", marginTop: 8 }}>Envoyer</button>
         </form>
+        {/* <div className="icons">
+          <style>
+            {`
+            .icons{
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 100%;
+              height: 30px;
+            }
+            .icon-i{
+                margin: 0 10px;
+                border-radius: 50%;
+                box-sizing: border-box;
+                background-color: gray;
+                width: 100%;
+                height: 30px
+                justify-content: center;
+                align-items: center;
+                text-decoration: none;
+                transition: 0.5s;
+                background-color: rgba(0 0 0 0);
+                font-size: 2.5rem;
+                -webkit-box-reflect: below 5px linear-gradient(to bottom, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.4));
+                }
+                .icon-i:hover{
+                  background: var(--color);
+                  color: #050801;
+                  box-shadow: 0 0 5px var(--color), 0 0 25px var(--color), 0 0 50px var(--color), 0 0 200px var(--color);
+                  
+                }
+            `}
+          </style>
+          <a className="icon-i" href=""style={{color: '#0072b1', width: 35, height:35, backgroundColor: "yellow"}}><i className="fa-brands fa-linkedln-in"></i></a>
+          <a className="icon-i" href=""style={{color: '#0072b1', width: 35, height:35, backgroundColor: "yellow"}}><i className="fa-brands fa-instagram"></i></a>
+          <a className="icon-i" href=""style={{color: '#0072b1', width: 35, height:35, backgroundColor: "yellow"}}><i className="fa-brands fa-facebook-f"></i></a>
+        </div> */}
         <div style={{
           display: "flex",
           justifyContent: "center",
@@ -918,6 +955,7 @@ const IndexPage = () => {
           {/* instagram => backgrong-color: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4) */}
           <a href="https://www.instagram.com/ade.ensate/" className="icon instagram" target="_blank" rel="noopener noreferrer">
             <span> <img src="instagram1.webp" alt="Instagram ADE" width={35} height={35} /></span>
+            
             <span className="label">instagram</span>
           </a>
           <a href="mailto:ade.ensa.tetouan@uae.ac.ma" className="icon email">
