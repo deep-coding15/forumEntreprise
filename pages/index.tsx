@@ -138,7 +138,7 @@ const IndexPage = () => {
       >
         {/* Logo à gauche */}
         <style>
-            {` @media (max-width:480px){
+          {` @media (max-width:480px){
                 .logos { display: none !important;} 
                 .enter { display: inline !important;}
               }
@@ -146,20 +146,20 @@ const IndexPage = () => {
                 .enter { display: none !important;} 
               }
             `}
-          </style>
-          <div className="enter" style={{ flex: 1, display: "flex", alignItems: "baseline", fontSize: 14, fontWeight: 600, color: "#3949ab", marginLeft: 16 }}>
-            <img src="forum logo.png" alt="forum logo" style={{ flex: 1, height: 70, marginRight: 15 }} /> 
-            <div style={{display: "inline-flex", transform: "translate(10%, -70%)", textAlign: "center"}}>Forum des entreprises <br /> ENSA de Tétouan</div>
-          </div>
-          
-        <div className="logos" style={{ flex: 1, display: "flex", alignItems: "center", alignContent: "center", gap: "2rem", width: "100%" }}>          
+        </style>
+        <div className="enter" style={{ flex: 1, display: "flex", alignItems: "baseline", fontSize: 14, fontWeight: 600, color: "#3949ab", marginLeft: 16 }}>
+          <img src="forum logo.png" alt="forum logo" style={{ flex: 1, height: 70, marginRight: 15 }} />
+          <div style={{ display: "inline-flex", transform: "translate(10%, -70%)", textAlign: "center" }}>Forum des entreprises <br /> ENSA de Tétouan</div>
+        </div>
+
+        <div className="logos" style={{ flex: 1, display: "flex", alignItems: "center", alignContent: "center", gap: "2rem", width: "100%" }}>
           <li style={{ flex: 1, listStyle: "none" }}><img src="LOGOENSA.png" alt="Ensatetouna" style={{ flex: 1, height: 60, marginRight: 13 }} /></li>
           <li style={{ flex: 1, listStyle: "none" }}><img src="LOGO ADE.png" alt="Ade" style={{ flex: 1, height: 80, marginRight: 13 }} /></li>
           <li style={{ flex: 1, listStyle: "none" }}><img src="forum logo.png" alt="forum logo" style={{ flex: 1, height: 70, marginRight: 15 }} /></li>
           <li style={{ flex: 1, listStyle: "none" }}><img src="LOGO UAE.png" alt="forum logo" style={{ flex: 1, height: 70, marginRight: 15 }} /></li>
         </div>
-        
-        
+
+
         {/* Menu burger mobile */}
         <button
           className="nav-burger"
@@ -629,98 +629,144 @@ const IndexPage = () => {
         <div style={{ textAlign: "center", marginBottom: 10, fontSize: 12, color: "#666" }}>
           {(organisateurs.length === 0 ? testOrganisateurs : organisateurs).length} organisateur(s)
         </div>
+        <div className="list-membres">
+          {/* org-list */}
+          <style>
+            {
+              `
+        @keyframes loop{
+          0%{
+            transform: translateX(0);
+          }
+          100%{
+            transform: translateX(-50%);
+          }
+        }
 
-        <div
-          className="org-list"
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: 32,
-            justifyContent: "center",
-            alignItems: "center",
-            width: "100%",
-            margin: "0 auto",
-          }}
-        >
-          {(organisateurs.length === 0 ? testOrganisateurs : organisateurs).map((membre, idx) => (
-            <div
-              key={membre.id || idx}
-              className="org-card"
-              style={{
-                background: "#ffffff",
-                borderRadius: 20,
-                boxShadow: "0 8px 24px rgba(0,0,0,0.05)",
-                padding: 28,
-                width: 260,
-                textAlign: "center",
-                transition: "transform 0.3s ease",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "translateY(-6px)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "translateY(0)";
-              }}
-            >
-              <img
-                src={membre.photoUrl}
-                alt={membre.nom}
-                width={90}
-                height={90}
+        .list-membres{
+          width: 30rem;
+          font-family: "Montserrat";
+          position: relative;
+          overflow: hidden;
+        }
+        .list-inner{
+          width: 100%;
+          display: flex;
+          gap: 1rem;
+          animation: loop 10s linear infinite;
+        }
+        .tag{
+          display: flex;
+          align-items: center;
+          gap: 0 0.2rem;
+          color: #e2e8f0;
+          font-size: 0.9rem;
+          background-color: #334155;
+          padding: 0.7rem 1rem;
+          border-radius: 0.4rem;
+          box-shadow: 0 0.1rem 0.2rem #00000033, 0 0.1rem 0.5rem #0000004d, 0 0.2rem 1.5rem #00000066
+        }
+        .fade{
+          position: absolute;
+          background: linear-gradient(90deg, #1e293b, transparent 30%, transparent 70%, #1e293b);
+          
+          top: 0;
+          bottom: 0;
+          left: 0;
+          pointer-events: none;
+        }
+      `
+            }
+          </style>
+          <div
+            className="list-inner"
+            
+          >
+            {/* org-card  */}
+            {(organisateurs.length === 0 ? testOrganisateurs : organisateurs).map((membre, idx) => (
+              <div className="tag"
+                key={membre.id || idx}
+                
                 style={{
-                  borderRadius: "50%",
-                  objectFit: "cover",
-                  marginBottom: 16,
-                  border: "3px solid #5c6bc0",
-                  display: "block",
-                  marginLeft: "auto",
-                  marginRight: "auto",
+                  background: "#ffffff",
+                  borderRadius: 20,
+                  boxShadow: "0 8px 24px rgba(0,0,0,0.05)",
+                  padding: "0 28px",
+                 
+                  textAlign: "center",
+                  transition: "transform 0.3s ease",
                 }}
-              />
-              <h3
-                style={{
-                  color: "#1a237e",
-                  margin: "10px 0 4px 0",
-                  fontSize: 18,
-                  fontWeight: 600,
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-6px)";
                 }}
-              >
-                {membre.prenom} {membre.nom}
-              </h3>
-              <div
-                style={{
-                  color: "#5c6bc0",
-                  fontWeight: 500,
-                  fontSize: 15,
-                  marginBottom: 4,
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "translateY(0)";
                 }}
               >
-                {membre.poste}
-              </div>
-              <div style={{ color: "#888", fontSize: 14 }}>{membre.filiere}</div>
-              {membre.linkedin && (
-                <a
-                  href={membre.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    display: "inline-block",
-                    marginTop: 12,
-                  }}
-                >
+                <div >
                   <img
-                    src="/linkedin1.webp"
-                    alt="LinkedIn"
-                    width={28}
-                    height={28}
-                    style={{ transition: "transform 0.3s ease" }}
-                    onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.2)")}
-                    onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
+                    src={membre.photoUrl}
+                    alt={membre.nom}
+                    width={90}
+                    height={90}
+                    style={{
+                      borderRadius: "50%",
+                      objectFit: "cover",
+                      marginBottom: 16,
+                      border: "3px solid #5c6bc0",
+                      display: "block",
+                      marginLeft: "auto",
+                      marginRight: "auto",
+                    }}
                   />
-                </a>
-              )}
-            </div>
-          ))}
+                  <h3
+                    style={{
+                      color: "#1a237e",
+                      margin: "10px 0 4px 0",
+                      fontSize: 18,
+                      fontWeight: 600,
+                    }}
+                  >
+                    {membre.prenom} {membre.nom}
+                  </h3>
+                  <div
+                    style={{
+                      color: "#5c6bc0",
+                      fontWeight: 500,
+                      fontSize: 15,
+                      marginBottom: 4,
+                    }}
+                  >
+                    {membre.poste}
+                  </div>
+                  <div style={{ color: "#888", fontSize: 14 }}>{membre.filiere}</div>
+                  {membre.linkedin && (
+                    <a
+                      href={membre.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        display: "inline-block",
+                        marginTop: 12,
+                      }}
+                    >
+                      <img
+                        src="/linkedin1.webp"
+                        alt="LinkedIn"
+                        width={28}
+                        height={28}
+                        style={{ transition: "transform 0.3s ease" }}
+                        onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.2)")}
+                        onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
+                      />
+                    </a>
+                  )}
+                </div>
+              </div>
+            ))}
+
+          </div>
+          <div className="fade"></div>
         </div>
       </section>
       {/* SECTION PROGRAMME */}
@@ -955,7 +1001,7 @@ const IndexPage = () => {
           {/* instagram => backgrong-color: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4) */}
           <a href="https://www.instagram.com/ade.ensate/" className="icon instagram" target="_blank" rel="noopener noreferrer">
             <span> <img src="instagram1.webp" alt="Instagram ADE" width={35} height={35} /></span>
-            
+
             <span className="label">instagram</span>
           </a>
           <a href="mailto:ade.ensa.tetouan@uae.ac.ma" className="icon email">
