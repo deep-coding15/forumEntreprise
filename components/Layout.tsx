@@ -7,7 +7,7 @@ type Props = {
   title?: string;
 };
 
-const linkStyle = {
+const linkStyle: React.CSSProperties = {
   padding: "10px 20px",
   borderRadius: "25px",
   backgroundColor: "#0070f3",
@@ -17,11 +17,11 @@ const linkStyle = {
   boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
   transition: "all 0.3s ease",
   cursor: "pointer",
-  userSelect: "none",
+  userSelect: "none" as React.CSSProperties["userSelect"],
   display: "inline-block",
 };
 
-const linkHoverStyle = {
+const linkHoverStyle: React.CSSProperties = {
   backgroundColor: "#005bb5",
   transform: "translateY(-3px)",
   boxShadow: "0 8px 15px rgba(0,91,181,0.3)",
@@ -49,32 +49,33 @@ const Layout = ({ children, title = "This is the default title" }: Props) => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
-      <header
+  <header className="header">
+    {links.map(({ href, label }) => (
+      <Link
+        key={href}
+        href={href}
         style={{
-          borderBottom: "2px solid #333",
-          paddingBottom: "10px",
-          marginBottom: "30px",
-          /* display: "flex", */
-          width: "80%",
-          justifyContent: "center",
-          gap: "20px",
+          ...linkStyle,
+          ...(hoveredLink === href ? linkHoverStyle : {}),
         }}
+        onMouseEnter={() => setHoveredLink(href)}
+        onMouseLeave={() => setHoveredLink(null)}
       >
-        {links.map(({ href, label }) => (
-          <Link
-            key={href}
-            href={href}
-            style={{
-              ...linkStyle,
-              ...(hoveredLink === href ? linkHoverStyle : {}),
-            }}
-            onMouseEnter={() => setHoveredLink(href)}
-            onMouseLeave={() => setHoveredLink(null)}
-          >
-            {label}
-          </Link>
-        ))}
-      </header>
+        {label}
+      </Link>
+    ))}
+    <style jsx>{`
+      .header {
+        background-color: #0A2540;
+        color: #FFFFFF;
+        font-family: 'Montserrat', sans-serif;
+        padding: 20px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    `}</style>
+  </header>
 
       <main>{children}</main>
     </div>

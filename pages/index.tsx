@@ -5,7 +5,8 @@ import { useEffect, useState, useRef } from "react";
 import QRCode from 'react-qr-code';
 import html2canvas from 'html2canvas';
 import { backgroundSize } from "html2canvas/dist/types/css/property-descriptors/background-size";
-import FontAwesome from "../components/FontAwesome";
+import FontAwesome from "../components/common/FontAwesome";
+import SphereAnimationWrapper from "../components/common/DynamicSphereAnimation";
 const eventDate = new Date("2025-10-15T09:00:00");
 
 function getCountdown() {
@@ -18,6 +19,7 @@ function getCountdown() {
   const seconds = Math.floor((diff / 1000) % 60);
   return { days, hours, minutes, seconds };
 }
+
 
 
 
@@ -391,6 +393,11 @@ const IndexPage = () => {
         }
       `}</style>
       {/* SECTION ACCUEIL responsive et centré */}
+      <video className="video-bg" autoPlay muted loop>
+        <source src="/video/video.mp4" type="video/mp4" />
+          Ton navigateur ne supporte pas la vidéo en background.
+      </video>
+      {/* <div className="overlay"></div> */}
       <div
         id="accueil"
         style={{
@@ -405,12 +412,12 @@ const IndexPage = () => {
           fontSize: "1.2rem",
           marginTop: 6,
           fontFamily: "'Poppins', 'Inter', 'Roboto', sans-serif",
-          fontWeight: 400
+          fontWeight: 400,
+
         }}>Vous invites Au</h3>
-        <h1
+        <h1 className="change-color"
           style={{
             fontSize: "2.8rem",
-            color: "#1a237e",
             marginBottom: 20,
             fontWeight: 800,
             lineHeight: 1.3,
@@ -429,7 +436,7 @@ const IndexPage = () => {
         }}>
           15 & 16 octobre 2025
         </h2>
-
+        <h2 className="typing-effect" style={{ width: "fit-content" }}>Tres bientôt ...</h2>
         <h3 style={{
           color: "#5c6bc0",
           fontSize: "1.2rem",
@@ -454,7 +461,7 @@ const IndexPage = () => {
               color: "#fff",
               lineHeight: 1.3,
               border: "none",
-              borderRadius: "50px",
+              borderRadius: "10px",
               cursor: "pointer",
               boxShadow: "0 8px 20px rgba(94, 53, 177, 0.4)",
               transition: "all 0.3s ease",
@@ -474,7 +481,7 @@ const IndexPage = () => {
 
           </button>
         </div>
-
+        {/* <SphereAnimationWrapper /> */}
         {countdown ? (
           <div
             style={{
@@ -491,7 +498,7 @@ const IndexPage = () => {
               { label: "Minutes", value: countdown.minutes },
               { label: "Secondes", value: countdown.seconds },
             ].map((item, index) => (
-              <div
+              <div className="countdown-item"
                 key={index}
                 style={{
                   backgroundColor: "#e8eaf6",
@@ -503,6 +510,16 @@ const IndexPage = () => {
                   boxShadow: "0 4px 12px rgba(26, 35, 126, 0.1)",
                 }}
               >
+                <style>
+                  {
+                    ` 
+                    .countdown-item:hover{
+                      transition: all 0.3s ease;
+                      scale: 1.1;
+                    }
+                    `
+                  }
+                </style>
                 <div style={{ fontSize: "2rem", fontWeight: 700 }}>{item.value}</div>
                 <div style={{ fontSize: "0.9rem", fontWeight: 500 }}>{item.label}</div>
               </div>
@@ -645,6 +662,7 @@ const IndexPage = () => {
 
         .list-membres{
           width: 30rem;
+          width: 100%;
           font-family: "Montserrat";
           position: relative;
           overflow: hidden;
@@ -664,12 +682,13 @@ const IndexPage = () => {
           background-color: #334155;
           padding: 0.7rem 1rem;
           border-radius: 0.4rem;
+          width: 2/5;
           box-shadow: 0 0.1rem 0.2rem #00000033, 0 0.1rem 0.5rem #0000004d, 0 0.2rem 1.5rem #00000066
         }
         .fade{
           position: absolute;
           background: linear-gradient(90deg, #1e293b, transparent 30%, transparent 70%, #1e293b);
-          
+          width: 00%;
           top: 0;
           bottom: 0;
           left: 0;
@@ -680,19 +699,19 @@ const IndexPage = () => {
           </style>
           <div
             className="list-inner"
-            
+
           >
             {/* org-card  */}
             {(organisateurs.length === 0 ? testOrganisateurs : organisateurs).map((membre, idx) => (
               <div className="tag"
                 key={membre.id || idx}
-                
+
                 style={{
                   background: "#ffffff",
                   borderRadius: 20,
                   boxShadow: "0 8px 24px rgba(0,0,0,0.05)",
                   padding: "0 28px",
-                 
+
                   textAlign: "center",
                   transition: "transform 0.3s ease",
                 }}
