@@ -7,6 +7,7 @@ import html2canvas from 'html2canvas';
 import { backgroundSize } from "html2canvas/dist/types/css/property-descriptors/background-size";
 import FontAwesome from "../components/common/FontAwesome";
 import SphereAnimationWrapper from "../components/common/DynamicSphereAnimation";
+import Membre from "./membre";
 const eventDate = new Date("2025-10-15T09:00:00");
 
 function getCountdown() {
@@ -71,7 +72,7 @@ const IndexPage = () => {
   const [countdown, setCountdown] = useState(getCountdown());
 
   // DYNAMIQUE : fetch depuis l'API
-  const [organisateurs, setOrganisateurs] = useState([]);
+  
   const [intervenants, setIntervenants] = useState([]);
   const [sponsors, setSponsors] = useState([]);
   const [entreprises, setEntreprises] = useState([]);
@@ -81,6 +82,7 @@ const IndexPage = () => {
   const [form, setForm] = useState({ nom: '', prenom: '', email: '', filiere: '', ecole: '' });
   const [badge, setBadge] = useState(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -90,22 +92,91 @@ const IndexPage = () => {
   }, []);
 
   useEffect(() => {
-    fetch('/api/organisateurs').then(r => r.json()).then(setOrganisateurs);
     fetch('/api/intervenants').then(r => r.json()).then(setIntervenants);
     fetch('/api/sponsors').then(r => r.json()).then(setSponsors);
     fetch('/api/entreprises').then(r => r.json()).then(setEntreprises);
     fetch('/api/mediapartners').then(r => r.json()).then(setMedias);
   }, []);
 
-  // Données de test si aucun organisateur n'est trouvé
-  const testOrganisateurs = [
-    { id: 1, nom: "Alami", prenom: "Ahmed", poste: "Président", filiere: "Génie Informatique", photoUrl: "https://via.placeholder.com/90x90/1a237e/ffffff?text=AA", linkedin: "#" },
-    { id: 2, nom: "Benjelloun", prenom: "Fatima", poste: "Vice-Présidente", filiere: "Génie Électrique", photoUrl: "https://via.placeholder.com/90x90/3949ab/ffffff?text=FB", linkedin: "#" },
-    { id: 3, nom: "Chraibi", prenom: "Omar", poste: "Secrétaire Général", filiere: "Génie Mécanique", photoUrl: "https://via.placeholder.com/90x90/5c6bc0/ffffff?text=OC", linkedin: "#" },
-    { id: 4, nom: "Dahmani", prenom: "Layla", poste: "Trésorière", filiere: "Génie Civil", photoUrl: "https://via.placeholder.com/90x90/3f51b5/ffffff?text=LD", linkedin: "#" },
-    { id: 5, nom: "El Fassi", prenom: "Youssef", poste: "Responsable Événements", filiere: "Génie Industriel", photoUrl: "https://via.placeholder.com/90x90/303f9f/ffffff?text=YE", linkedin: "#" },
-    { id: 6, nom: "Fassi", prenom: "Amina", poste: "Responsable Communication", filiere: "Génie Informatique", photoUrl: "https://via.placeholder.com/90x90/1a237e/ffffff?text=AF", linkedin: "#" },
-  ];
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    //Nettoyage des anciens points si le composants se remonte
+    container.innerHTML = "";
+
+    const pointCount = 20;
+    const minSize = 2;
+    const maxSize = 8;
+
+    function createPoint() {
+      const point = document.createElement('div');
+      point.classList.add('point');
+
+      //Taille aléatoire
+      const size = Math.floor(Math.random() * (maxSize - minSize + 1) + minSize);
+      point.style.width = `${size}px`;
+      point.style.height = `${size}px`;
+
+      // Position initiale aléatoire
+      const initialX = Math.random() * window.innerWidth;
+      const initialY = Math.random() * window.innerHeight;
+      point.style.left = `${initialX}px`;
+      point.style.top = `${initialY}px`;
+
+      // Couleur aléatoire
+      const hue = Math.floor(Math.random() * 360);
+      point.style.backgroundColor = `hsla(${hue}, 70%, 60%, 0.7)`;
+
+      // Définir les variables CSS pour l'animation
+      const tx = (Math.random() - 0.5) * 200;
+      const ty = (Math.random() - 0.5) * 200;
+      point.style.setProperty('--tx', `${tx}px`);
+      point.style.setProperty('--ty', `${ty}px`);
+
+      // Durée d'animation aléatoire
+      const duration = 10 + Math.random() * 20;
+      point.style.animationDuration = `${duration}s`;
+
+      container.appendChild(point);
+
+      // Redémarrer l'animation avec de nouvelles valeurs quand elle se termine
+      point.addEventListener('animationiteration', function () {
+        const newTx = (Math.random() - 0.5) * 200;
+        const newTy = (Math.random() - 0.5) * 200;
+        point.style.setProperty('--tx', `${newTx}px`);
+        point.style.setProperty('--ty', `${newTy}px`);
+        const newDuration = 10 + Math.random() * 20;
+        point.style.animationDuration = `${newDuration}s`;
+      });
+    }
+
+    for (let i = 0; i < pointCount; i++) {
+      createPoint();
+    }
+
+    // Ajuster les positions si la fenêtre est redimensionnée
+    const handleResize = () => {
+      container.querySelectorAll('.point').forEach(point => {
+        const currentX = parseFloat((point as HTMLElement).style.left);
+        const currentY = parseFloat((point as HTMLElement).style.top);
+        if (currentX > window.innerWidth || currentY > window.innerHeight) {
+          (point as HTMLElement).style.left = `${Math.random() * window.innerWidth}px`;
+          (point as HTMLElement).style.top = `${Math.random() * window.innerHeight}px`;
+        }
+      });
+    };
+    window.addEventListener('resize', handleResize);
+
+    // Nettoyage à la destruction du composant
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      container.innerHTML = "";
+    };
+  }, []);
+
+
+  
 
   const badgeRef = useRef(null);
 
@@ -253,6 +324,8 @@ const IndexPage = () => {
           </div>
         )}
       </nav>
+      <div ref={containerRef} id="container" style={{ height: Infinity }}></div>
+
       {/* Responsive CSS pour masquer/afficher menu burger */}
       <style>{`
         
@@ -392,11 +465,13 @@ const IndexPage = () => {
           }
         }
       `}</style>
+
+
       {/* SECTION ACCUEIL responsive et centré */}
-      <video className="video-bg" autoPlay muted loop>
+      {/* <video className="video-bg" autoPlay muted loop>
         <source src="/video/video.mp4" type="video/mp4" />
-          Ton navigateur ne supporte pas la vidéo en background.
-      </video>
+        Ton navigateur ne supporte pas la vidéo en background.
+      </video> */}
       {/* <div className="overlay"></div> */}
       <div
         id="accueil"
@@ -408,16 +483,18 @@ const IndexPage = () => {
         }}
       >
         <h3 style={{
-          color: "#5c6bc0",
+          color: "#fff",
           fontSize: "1.2rem",
           marginTop: 6,
           fontFamily: "'Poppins', 'Inter', 'Roboto', sans-serif",
           fontWeight: 400,
+          
 
         }}>Vous invites Au</h3>
-        <h1 className="change-color"
+        <h1 className="change-color text-3d"
           style={{
             fontSize: "2.8rem",
+            color: "#0A74DA",
             marginBottom: 20,
             fontWeight: 800,
             lineHeight: 1.3,
@@ -428,7 +505,7 @@ const IndexPage = () => {
         </h1>
 
         <h2 style={{
-          color: "#3949ab",
+          color: "#fff",
           fontSize: "1.4rem",
           margin: "8px 0",
           fontFamily: "'Poppins', 'Inter', 'Roboto', sans-serif",
@@ -436,9 +513,27 @@ const IndexPage = () => {
         }}>
           15 & 16 octobre 2025
         </h2>
-        <h2 className="typing-effect" style={{ width: "fit-content" }}>Tres bientôt ...</h2>
+        <style>
+          {
+            `.blinking-text {
+              font-size: 24px;
+              font-weight: bold;
+              color: red;
+              animation: blink 2s infinite;
+            }
+
+            @keyframes blink {
+              0%, 50%, 100% {
+                opacity: 1;
+              }
+              25%, 75% {
+                opacity: 0;
+              }
+            }`
+          }
+        </style>
         <h3 style={{
-          color: "#5c6bc0",
+          color: "#69F0AE",
           fontSize: "1.2rem",
           marginTop: 6,
           fontFamily: "'Poppins', 'Inter', 'Roboto', sans-serif",
@@ -448,7 +543,7 @@ const IndexPage = () => {
         </h3>
 
         <div style={{ margin: "40px 0" }}>
-          <button
+          <button 
             onClick={(e) => {
               e.preventDefault();
               setShowModal(true);
@@ -477,7 +572,8 @@ const IndexPage = () => {
               e.currentTarget.style.transform = "scale(1)";
             }}
           >
-            S’inscrire maintenant
+            <span className="blinking-text" style={{color: "#fff"}}> S’inscrire maintenant </span>
+           
 
           </button>
         </div>
@@ -630,22 +726,13 @@ const IndexPage = () => {
           padding: "40px 12px",
         }}
       >
-        <h2
-          style={{
-            color: "#1a237e",
-            textAlign: "center",
-            marginBottom: 48,
-            fontSize: 26,
-            fontWeight: 600,
-          }}
-        >
-          Membres organisateurs
-        </h2>
+        <Membre />
+        
 
         {/* Debug: nombre d'organisateurs */}
-        <div style={{ textAlign: "center", marginBottom: 10, fontSize: 12, color: "#666" }}>
+        {/* <div style={{ textAlign: "center", marginBottom: 10, fontSize: 12, color: "#666" }}>
           {(organisateurs.length === 0 ? testOrganisateurs : organisateurs).length} organisateur(s)
-        </div>
+        </div> */}
         <div className="list-membres">
           {/* org-list */}
           <style>
@@ -697,11 +784,11 @@ const IndexPage = () => {
       `
             }
           </style>
-          <div
+          {/* <div
             className="list-inner"
 
           >
-            {/* org-card  */}
+            {/* org-card  *}
             {(organisateurs.length === 0 ? testOrganisateurs : organisateurs).map((membre, idx) => (
               <div className="tag"
                 key={membre.id || idx}
@@ -784,7 +871,7 @@ const IndexPage = () => {
               </div>
             ))}
 
-          </div>
+          </div> */}
           <div className="fade"></div>
         </div>
       </section>
