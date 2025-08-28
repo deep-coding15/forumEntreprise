@@ -105,7 +105,7 @@ const IndexPage = () => {
     //Nettoyage des anciens points si le composants se remonte
     container.innerHTML = "";
 
-    const pointCount = 20;
+    const pointCount = 500;
     const minSize = 2;
     const maxSize = 8;
 
